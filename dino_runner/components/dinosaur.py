@@ -1,12 +1,12 @@
 import pygame
 from pygame.sprite import Sprite
 
-from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING
+from dino_runner.utils.constants import BIRD, RUNNING, JUMPING, DUCKING
 
 X_POS = 80
 Y_POS = 310
 JUMP_VEL = 8.5
-LOCAL_ADJUSTMENT = RUNNING[0].get_height() - DUCKING[0].get_height()
+LOCAL_ADJUSTMENT_DUCK = RUNNING[0].get_height() - DUCKING[0].get_height()
 
 
 class Dinosaur(Sprite):
@@ -67,9 +67,16 @@ class Dinosaur(Sprite):
         self.image = DUCKING[0] if self.step_index < 5 else DUCKING[1]
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = X_POS
-        self.dino_rect.y = Y_POS + LOCAL_ADJUSTMENT
+        self.dino_rect.y = Y_POS + LOCAL_ADJUSTMENT_DUCK
         self.step_index += 1
         self.dino_duck = False
+
+    def FLY(self):
+        self.image = BIRD[0] if self.step_index < 5 else BIRD[1]
+        self.dino_rect = self.image.get_rect()
+        self.dino_rect.x = X_POS
+        self.dino_rect.y = Y_POS
+        self.step_index += 1
 
     def draw(self, screen):
         screen.blit(self.image, (self.dino_rect.x, self.dino_rect.y))
