@@ -1,4 +1,5 @@
 import pygame
+from pygame.sprite import Sprite
 
 from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING
 
@@ -8,7 +9,7 @@ JUMP_VEL = 8.5
 LOCAL_ADJUSTMENT = RUNNING[0].get_height() - DUCKING[0].get_height()
 
 
-class Dinosaur:
+class Dinosaur(Sprite):
     def __init__(self):
         self.image = RUNNING[0]
         self.dino_rect = self.image.get_rect()
