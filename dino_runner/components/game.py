@@ -31,6 +31,13 @@ class Game:
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
 
+    def template_text(self, text_data, color, position):
+        font = pygame.font.Font(FONT_STYLE, 22)
+        text = font.render(text_data, True, color)
+        text_rect = text.get_rect()
+        text_rect.center = position
+        self.screen.blit(text, text_rect)
+
     def execute(self):
         self.running = True
         while self.running:
@@ -42,6 +49,8 @@ class Game:
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
+        self.score = 0
+        self.game_speed = 20
         self.obstacle_manager.reset_obstacles()
         while self.playing:
             self.events()
@@ -85,11 +94,7 @@ class Game:
         self.x_pos_bg -= self.game_speed
 
     def draw_score(self):
-        font = pygame.font.Font(FONT_STYLE, 22)
-        text = font.render(f"Score: {self.score}", True, (0, 0, 0))
-        text_rect = text.get_rect()
-        text_rect.center = (1000, 50)
-        self.screen.blit(text, text_rect)
+        self.template_text(f"Score: {self.score}", (0, 0, 0), (1000, 50))
 
     def show_menu(self):
         self.screen.fill((255, 255, 255))
@@ -97,13 +102,62 @@ class Game:
         half_screen_width = SCREEN_WIDTH // 2
 
         if self.death_count == 0:
-            font = pygame.font.Font(FONT_STYLE, 22)
-            text = font.render("Press any key to start", True, (0, 0, 0))
-            text_rect = text.get_rect()
-            text_rect.center = (half_screen_width, half_screen_height)
-            self.screen.blit(text, text_rect)
-        else:  ## tela de restart
-            self.screen.blit(ICON, (half_screen_width - 20, half_screen_height - 140))
+            self.template_text(
+                "Press any key to start",
+                (0, 0, 0),
+                (half_screen_width, half_screen_height),
+            )
+
+        else:  ## tela de restart      #    x                              y
+            self.screen.blit(ICON, (half_screen_width - 40, half_screen_height - 140))
+            if self.death_count == 1:
+                self.template_text(
+                    'you were from "F"',
+                    (0, 0, 0),
+                    (half_screen_width, half_screen_height),
+                )
+                self.template_text(
+                    "Press any key to restart",
+                    (0, 0, 0),
+                    (half_screen_width, half_screen_height + 60),
+                )
+                self.template_text(
+                    f"Score achieved: {self.score}",
+                    (0, 0, 0),
+                    (half_screen_width, half_screen_height + 30),
+                )
+            elif self.death_count == 2:
+                self.template_text(
+                    'you were from "F" twice',
+                    (0, 0, 0),
+                    (half_screen_width, half_screen_height + 60),
+                )
+                self.template_text(
+                    f"Score achieved: {self.score}",
+                    (0, 0, 0),
+                    (half_screen_width, half_screen_height + 90),
+                )
+                self.template_text(
+                    "Press any key to restart",
+                    (0, 0, 0),
+                    (half_screen_width, half_screen_height + 120),
+                )
+            else:
+                self.template_text(
+                    f'you were from "F" {self.death_count} times',
+                    (0, 0, 0),
+                    (half_screen_width, half_screen_height + 60),
+                )
+                self.template_text(
+                    f"Score achieved: {self.score}",
+                    (0, 0, 0),
+                    (half_screen_width, half_screen_height + 90),
+                )
+                self.template_text(
+                    "Press any key to restart",
+                    (0, 0, 0),
+                    (half_screen_width, half_screen_height + 120),
+                )
             ## mostrar mensagem de "Press any key to restart"
             ## mostrar o score atingido
             ## mostrar death_count
