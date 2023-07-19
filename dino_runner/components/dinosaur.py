@@ -71,12 +71,5 @@ class Dinosaur(Sprite):
         self.step_index += 1
         self.dino_duck = False
 
-    def FLY(self):
-        self.image = BIRD[0] if self.step_index < 5 else BIRD[1]
-        self.dino_rect = self.image.get_rect()
-        self.dino_rect.x = X_POS
-        self.dino_rect.y = Y_POS
-        self.step_index += 1
-
     def draw(self, screen):
         screen.blit(self.image, (self.dino_rect.x, self.dino_rect.y))

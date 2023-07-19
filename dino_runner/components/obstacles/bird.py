@@ -10,10 +10,11 @@ class Bird(Obstacle):
         self.type = random.randint(0, 1)
         super().__init__(image, self.type)
         self.rect.y = random.randint(260, 310)
-        # if self.Gindex >= 10:
-        #     self.Gindex = 0
-        # self.image = BIRD[0] if self.Gindex < 5 else BIRD[1]
-        # self.rectz = self.image.get_rect()
-        # self.x = 80
-        # self.y = 310
-        # self.Gindex += 1
+        self.step_index = 0
+
+    def draw(self, screen):
+        screen.blit(self.image[self.step_index // 5], self.rect)
+        self.step_index += 1
+
+        if self.step_index >= 9:
+            self.step_index = 0
