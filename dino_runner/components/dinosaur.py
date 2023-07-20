@@ -8,8 +8,16 @@ from dino_runner.utils.constants import (
     RUNNING_SHIELD,
     JUMPING_SHIELD,
     DUCKING_SHIELD,
+    RUNNING_HAMMER,
+    JUMPING_HAMMER,
+    DUCKING_HAMMER,
+    RUNNING_PARTYHAT,
+    JUMPING_PARTYHAT,
+    DUCKING_PARTYHAT,
     DEFAULT_TYPE,
     SHIELD_TYPE,
+    HAMMER_TYPE,
+    PARTYHAT_TYPE,
 )
 
 X_POS = 80
@@ -17,9 +25,24 @@ Y_POS = 310
 JUMP_VEL = 8.5
 LOCAL_ADJUSTMENT_DUCK = RUNNING[0].get_height() - DUCKING[0].get_height()
 
-DUCK_IMG = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD}
-JUMP_IMG = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD}
-RUN_IMG = {DEFAULT_TYPE: RUNNING, SHIELD_TYPE: RUNNING_SHIELD}
+DUCK_IMG = {
+    DEFAULT_TYPE: DUCKING,
+    SHIELD_TYPE: DUCKING_SHIELD,
+    HAMMER_TYPE: DUCKING_HAMMER,
+    PARTYHAT_TYPE: DUCKING_PARTYHAT,
+}
+JUMP_IMG = {
+    DEFAULT_TYPE: JUMPING,
+    SHIELD_TYPE: JUMPING_SHIELD,
+    HAMMER_TYPE: JUMPING_HAMMER,
+    PARTYHAT_TYPE: JUMPING_PARTYHAT,
+}
+RUN_IMG = {
+    DEFAULT_TYPE: RUNNING,
+    SHIELD_TYPE: RUNNING_SHIELD,
+    HAMMER_TYPE: RUNNING_HAMMER,
+    PARTYHAT_TYPE: RUNNING_PARTYHAT,
+}
 
 
 class Dinosaur(Sprite):
@@ -39,6 +62,8 @@ class Dinosaur(Sprite):
     def setup_state(self):
         self.has_power_up = False
         self.shield = False
+        self.partyhat = False
+        self.hummer = False
         self.show_test = False
         self.power_up_time = 0
 

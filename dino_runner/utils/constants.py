@@ -26,9 +26,15 @@ RUNNING_HAMMER = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
 ]
 
+RUNNING_PARTYHAT = [
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1PartyHat.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2PartyHat.png")),
+]
+
 JUMPING = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJump.png"))
 JUMPING_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpShield.png"))
 JUMPING_HAMMER = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpHammer.png"))
+JUMPING_PARTYHAT = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpPartyHat.png"))
 
 DUCKING = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1.png")),
@@ -43,6 +49,11 @@ DUCKING_SHIELD = [
 DUCKING_HAMMER = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
+]
+
+DUCKING_PARTYHAT = [
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1PartyHat.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2PartyHat.png")),
 ]
 
 SMALL_CACTUS = [
@@ -64,10 +75,20 @@ BIRD = [
 CLOUD = pygame.image.load(os.path.join(IMG_DIR, "Other/Cloud.png"))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Other/shield.png"))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, "Other/hammer.png"))
+PARTYHAT = pygame.image.load(os.path.join(IMG_DIR, "Other/PartyHat.png"))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, "Other/Track.png"))
-
-HEART = pygame.image.load(os.path.join(IMG_DIR, "Other/SmallHeart.png"))
+FND = pygame.image.load(os.path.join(IMG_DIR, "Other/Desert Clean.png"))
 
 DEFAULT_TYPE = "default"
 SHIELD_TYPE = "shield"
+HAMMER_TYPE = "hammer"
+PARTYHAT_TYPE = "partyhat"
+
+pygame.mixer.init()
+pygame.mixer.music.load(
+    os.path.join(
+        IMG_DIR,
+        "Other/SnapInsta.io - Música com grave forte Eletrônica _ GRAVE by Giovani CD's (320 kbps).mp3",
+    )
+)

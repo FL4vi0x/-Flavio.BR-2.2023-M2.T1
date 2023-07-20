@@ -1,6 +1,7 @@
 import pygame
 
 from dino_runner.utils.constants import (
+    FND,
     BG,
     ICON,
     SCREEN_HEIGHT,
@@ -8,6 +9,7 @@ from dino_runner.utils.constants import (
     TITLE,
     FPS,
     DEFAULT_TYPE,
+    RUNNING,
 )
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
@@ -52,10 +54,12 @@ class Game:
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
+        pygame.mixer.music.play(-1)
         self.score = 0
         self.game_speed = 20
         self.obstacle_manager.reset_obstacles()
         self.power_up_manager.reset_power_ups()
+
         while self.playing:
             self.events()
             self.update()
@@ -81,7 +85,8 @@ class Game:
 
     def draw(self):
         self.clock.tick(FPS)
-        self.screen.fill((255, 255, 255))
+        self.screen.blit(FND, (0, 0))
+        # fill((255, 255, 255))
         self.draw_background()
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
@@ -119,6 +124,7 @@ class Game:
                 self.player.type = DEFAULT_TYPE
 
     def show_menu(self):
+        pygame.mixer.music.stop()
         self.screen.fill((255, 255, 255))
         half_screen_height = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
@@ -145,7 +151,7 @@ class Game:
                 )
                 self.template_text(
                     f"Score achieved: {self.score}",
-                    (0, 0, 0),
+                    (225, 0, 0),
                     (half_screen_width, half_screen_height - 150),
                 )
             elif self.death_count == 2:
@@ -172,7 +178,7 @@ class Game:
                 )
                 self.template_text(
                     f"Score achieved: {self.score}",
-                    (0, 0, 0),
+                    (225, 0, 0),
                     (half_screen_width, half_screen_height - 150),
                 )
                 self.template_text(
